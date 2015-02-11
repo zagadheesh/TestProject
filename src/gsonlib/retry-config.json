@@ -1,0 +1,259 @@
+{
+    "retry_providers":
+            [
+                "mom", "cyberplat"
+            ],
+    "retryQuery": "select * from table where retry=1",
+    "sleep_time": 10000,
+    "queueSize": 1000,
+    "processors_threads": 1,
+    "cyberplat":
+            {
+                "provider_class": "com.imimobile.topup.monitors.retry.CyberplatRetryManager",
+                "sleep_time": 5000,
+                "retryQuery": "SELECT tinfo.msisdn,tinfo.amount,tinfo.correlation_id,tinfo.dest_nw,tinfo.op_type,tinfo.source_nw,tinfo.provider,tinfo.provider_status,tinfo.status,rinfo.id,rinfo.next_retry,rinfo.retry_count,rinfo.topup_id FROM retry_info rinfo,topup_info tinfo WHERE rinfo.id>? AND rinfo.next_retry<? AND rinfo.topup_id=tinfo.id AND rinfo.retry=1",
+                "retryConditions":
+                        [
+                            {
+                                "codes":
+                                        [
+                                            "32"
+                                        ],
+                                "maxRetryCount": 10,
+                                "retryIntervals":
+                                        [
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "224",
+                                            "conn",
+                                            "6",
+                                            "empty",
+                                            "30",
+                                            "50"
+                                        ],
+                                "maxRetryCount": 5,
+                                "retryIntervals":
+                                        [
+                                            300,
+                                            900,
+                                            1800,
+                                            3600,
+                                            5400
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "33"
+                                        ],
+                                "maxRetryCount": 3,
+                                "retryIntervals":
+                                        [
+                                            300,
+                                            300,
+                                            300
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "88"
+                                        ],
+                                "maxRetryCount": 2,
+                                "retryIntervals":
+                                        [
+                                            600,
+                                            600
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "45",
+                                            "37"
+                                        ],
+                                "maxRetryCount": 1,
+                                "retryIntervals":
+                                        [
+                                            300
+                                        ]
+                            }
+                        ],
+                "mnp":
+                        {
+                            "codes":
+                                    [
+                                        "23",
+                                        "24",
+                                        "25",
+                                        "7"
+                                    ],
+                            "operators":
+                                    [
+                                        "AIRTEL_PREPAID",
+                                        "VODAFONE_PREPAID",
+                                        "BSNL_PREPAID",
+                                        "TATA DOCOMO_PREPAID",
+                                        "IDEA_PREPAID",
+                                        "AIRCEL_PREPAID",
+                                        "RELIANCE_PREPAID",
+                                        "TATA INDICOM_PREPAID",
+                                        "UNINOR_PREPAID",
+                                        "AIRTEL_POSTPAID",
+                                        "VODAFONE_POSTPAID",
+                                        "BSNL_POSTPAID",
+                                        "TATA DOCOMO_POSTPAID",
+                                        "IDEA_POSTPAID",
+                                        "RELIANCE_POSTPAID"
+                                    ],
+                            "provider_class": "com.imimobile.topup.monitors.mnp.CyberplatMNPRetryManager",
+                            "retryQuery": "SELECT mnp.*,info.source_nw,info.provider,info.correlation_id,info.msisdn,info.amount FROM mnp_retry_info mnp,topup_info info WHERE mnp.retry=1 AND  mnp.id>? AND mnp.topup_id=info.id"
+                        }
+            },
+    "mom":
+            {
+                "provider_class": "com.imimobile.topup.monitors.retry.CyberplatRetryManager",
+                "sleep_time": 5000,
+                "retryQuery": "SELECT tinfo.msisdn,tinfo.amount,tinfo.correlation_id,tinfo.dest_nw,tinfo.op_type,tinfo.source_nw,tinfo.provider,tinfo.provider_status,tinfo.status,rinfo.id,rinfo.next_retry,rinfo.retry_count,rinfo.topup_id FROM retry_info rinfo,topup_info tinfo WHERE rinfo.id>? AND rinfo.next_retry<? AND rinfo.topup_id=tinfo.id AND rinfo.retry=1",
+                "retryConditions":
+                        [
+                            {
+                                "codes":
+                                        [
+                                            "32"
+                                        ],
+                                "maxRetryCount": 10,
+                                "retryIntervals":
+                                        [
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630,
+                                            3630
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "224",
+                                            "conn",
+                                            "6",
+                                            "empty",
+                                            "30",
+                                            "50"
+                                        ],
+                                "maxRetryCount": 5,
+                                "retryIntervals":
+                                        [
+                                            300,
+                                            900,
+                                            1800,
+                                            3600,
+                                            5400
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "33"
+                                        ],
+                                "maxRetryCount": 3,
+                                "retryIntervals":
+                                        [
+                                            300,
+                                            300,
+                                            300
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "88"
+                                        ],
+                                "maxRetryCount": 2,
+                                "retryIntervals":
+                                        [
+                                            600,
+                                            600
+                                        ]
+                            },
+                            {
+                                "codes":
+                                        [
+                                            "45",
+                                            "37"
+                                        ],
+                                "maxRetryCount": 1,
+                                "retryIntervals":
+                                        [
+                                            300
+                                        ]
+                            }
+                        ],
+                "mnp":
+                        {
+                            "codes":
+                                    [
+                                        "23",
+                                        "24",
+                                        "25",
+                                        "7"
+                                    ],
+                            "operators":
+                                    [
+                                        "AIRTEL_PREPAID",
+                                        "VODAFONE_PREPAID",
+                                        "BSNL_PREPAID",
+                                        "TATA DOCOMO_PREPAID",
+                                        "IDEA_PREPAID",
+                                        "AIRCEL_PREPAID",
+                                        "RELIANCE_PREPAID",
+                                        "TATA INDICOM_PREPAID",
+                                        "UNINOR_PREPAID",
+                                        "AIRTEL_POSTPAID",
+                                        "VODAFONE_POSTPAID",
+                                        "BSNL_POSTPAID",
+                                        "TATA DOCOMO_POSTPAID",
+                                        "IDEA_POSTPAID",
+                                        "RELIANCE_POSTPAID"
+                                    ],
+                            "provider_class": "com.imimobile.topup.monitors.mnp.CyberplatMNPRetryManager",
+                            "retryQuery": "SELECT mnp.*,info.source_nw,info.provider,info.correlation_id,info.msisdn,info.amount FROM mnp_retry_info mnp,topup_info info WHERE mnp.retry=1 AND  mnp.id>? AND mnp.topup_id=info.id"
+                        }
+            },
+    "topup_status":
+            {
+                "retryIntervals":
+                        [
+                            60,
+                            300,
+                            900,
+                            1800,
+                            2700,
+                            3600,
+                            7200,
+                            14400,
+                            18000,
+                            36000
+                        ],
+                "maxRetryCount": 10
+            }
+}
