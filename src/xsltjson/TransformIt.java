@@ -27,6 +27,7 @@ public class TransformIt {
                 + "</S:Envelope>");
         String s = obj.toString(4);
         System.out.println(s);
+        System.out.println("ttt");
     }
 
 }
